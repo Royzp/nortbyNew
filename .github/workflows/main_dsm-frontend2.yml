@@ -57,5 +57,5 @@ jobs:
         with:
           app-name: 'dsm-frontend2'
           slot-name: 'Production'
-          package: .
+          package: ./dist
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_199998A8919349599C81E6B40E513B56 }}
