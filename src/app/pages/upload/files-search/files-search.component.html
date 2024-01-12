@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col">
+    <div class="card card-chart">
+      <div class="card-header card-header-grey">
+        <h5 class="card-title">
+          Historial de Cargas
+        </h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field appearance="fill">
+              <mat-label>Desde</mat-label>
+              <input matInput [matDatepicker]="cargarDesde" />
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="cargarDesde"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #cargarDesde></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="fill">
+              <mat-label>Hasta</mat-label>
+              <input matInput [matDatepicker]="cargarHasta" />
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="cargarHasta"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #cargarHasta></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="fill">
+              <mat-label>ID Cuenta</mat-label>
+              <mat-select>
+                <mat-option
+                  *ngFor="let cuenta of cuentas"
+                  [value]="cuenta.value"
+                >
+                  {{ cuenta.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="card card-chart">
+      <div class="card-header card-header-grey">
+        <h5 class="card-title">Tabla detalle</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <th>ID Secuencia</th>
+              <th>Archivo</th>
+              <th>Titulo</th>
+              <th>Tipo</th>
+              <th>Fecha de Carga</th>
+              <th>Usuario</th>
+              <th>Acción</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let upload of files">
+                <td>{{ upload.secuencia }}</td>
+                <td>{{ upload.archivo }}</td>
+                <td>{{ upload.titulo }}</td>
+                <td>{{ getTipo(upload.tipoCarga) }}</td>
+                <td>{{ upload.fechaCarga | date : "dd/MM/yyyy HH:mm" }}</td>
+                <td>{{ upload.usuario }}</td>
+                <td>
+                  <button mat-icon-button>
+                    <i class="material-icons">delete</i>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="files.length == 0 && !loadingSearchj$.value">
+                <td colspan="8">0 Registros encontrados</td>
+              </tr>
+              <tr *ngIf="loadingSearchj$.value">
+                <td colspan="8">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <mat-paginator
+          #paginator
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[10, 20]"
+          [showFirstLastButtons]="true"
+          [length]="totalSize"
+          [pageIndex]="currentPage"
+          (page)="handlePage($event)"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

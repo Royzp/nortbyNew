@@ -1,0 +1,99 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li class="nav-item">
+                    <a
+                      mat-button
+                      class="nav-link active"
+                      href="#venta"
+                      (click)="onClickSelectedTab('venta')"
+                      data-toggle="tab"
+                    >
+                      <i class="material-icons">attach_money</i> Carga Ventas / Sales
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      mat-button
+                      class="nav-link"
+                      href="#inventario"
+                      (click)="onClickSelectedTab('inventario')"
+                      data-toggle="tab"
+                    >
+                      <i class="material-icons">view_in_ar</i> Carga Inventario / Inventory
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      mat-button
+                      class="nav-link"
+                      href="#mantenimiento"
+                      (click)="onClickSelectedTab('mantenimiento')"
+                      data-toggle="tab"
+                    >
+                      <i class="material-icons">code</i> Mantenimiento / Suport
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item" *ngIf="!isCuenta()">
+                    <a
+                      mat-button
+                      class="nav-link"
+                      href="#facturacion"
+                      (click)="onClickSelectedTab('facturacion')"
+                      data-toggle="tab"
+                    >
+                      <i class="material-icons">file_open</i> Facturaci&oacute;n
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item" *ngIf="!isCuenta()">
+                    <a
+                      mat-button
+                      class="nav-link"
+                      href="#trafico"
+                      (click)="onClickSelectedTab('trafico')"
+                      data-toggle="tab"
+                    >
+                      <i class="material-icons">compare_arrows</i> Tr&aacute;fico
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="tab-pane active" id="venta">
+                <app-upload-data [type]="'VE'" *ngIf="selectedTab === 'venta'"></app-upload-data>
+              </div>
+              <div class="tab-pane" id="inventario">
+                <app-upload-data [type]="'IN'" *ngIf="selectedTab === 'inventario'"></app-upload-data>
+              </div>
+              <div class="tab-pane" id="mantenimiento">
+                <app-maintenance *ngIf="selectedTab === 'mantenimiento'"></app-maintenance>
+              </div>
+              <div class="tab-pane" id="facturacion">
+                <!-- app-files-search [type]="'FA'" *ngIf="selectedTab === 'facturacion'"></app-files-search -->
+                <app-upload-data [type]="'FA'" *ngIf="selectedTab === 'facturacion'"></app-upload-data>
+              </div>
+              <div class="tab-pane" id="trafico">
+                <!-- app-files-search [type]="'TR'" *ngIf="selectedTab === 'trafico'"></app-files-search -->
+                <app-upload-data [type]="'TR'" *ngIf="selectedTab === 'trafico'"></app-upload-data>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

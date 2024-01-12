@@ -1,0 +1,19 @@
+<div class="wrapper-full-page">
+  <div class="main-panel main-panel-login">
+    <div class="row">
+      <div class="col">
+        <h1 class="text-center">CENTRO DE PLANIFICACI&Oacute;N DE INFORMACI&Oacute;N</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div *ngIf="isMaps('maps')">
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>

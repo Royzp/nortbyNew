@@ -1,0 +1,160 @@
+<ngx-spinner
+  bdColor="rgba(255, 255, 255, 0.8)"
+  size="medium"
+  color="#000000"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+  ><p style="color: red">Actualizando...</p></ngx-spinner
+>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card card-chart">
+          <div class="card-header card-header-grey">
+            <h5 class="card-title">DATOS DE LA CUENTA</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        placeholder="Cuenta"
+                        type="text"
+                        [value]="usuario"
+                        readonly=""
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        placeholder="ID Cuenta"
+                        type="text"
+                        [value]="cuenta"
+                        readonly=""
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card card-chart">
+          <div class="card-header card-header-grey">
+            <h5 class="card-title">HOMOLOGACION DE SUCURSALES</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-header card-header-grey">
+                    <h5 class="card-title">Subcuentas</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <tbody>
+                          <tr *ngFor="let cuenta of cuentas">
+                            <td>
+                              <a
+                                href="javascript:void(0);"
+                                (click)="seleccionarCuenta(cuenta.cliente)"
+                                [ngClass]="{
+                                  'text-gray':
+                                    cuenta.cliente === cuentaSeleccionada
+                                }"
+                              >
+                                {{ cuenta.cliente }}
+                              </a>
+                            </td>
+                          </tr>
+                          <tr *ngIf="loadingCuentas$.value">
+                            <td>Loading...</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <mat-paginator
+                      #paginatorCuenta
+                      [pageSize]="pageSizeCuenta"
+                      [pageSizeOptions]="pageSizeOptions"
+                      [showFirstLastButtons]="true"
+                      [length]="totalSizeCuenta"
+                      [pageIndex]="currentPageCuenta"
+                      (page)="handlePageCuenta($event)"
+                    >
+                    </mat-paginator>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="card">
+                  <div class="card-header card-header-grey">
+                    <h5 class="card-title">Sucursales</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class="text-primary">
+                          <th>Sucursal</th>
+                          <th>Nombre</th>
+                          <th>Alias</th>
+                          <th>Acción</th>
+                        </thead>
+                        <tbody>
+                          <ng-container *ngIf="!loadingSucursales$.value">
+                            <tr *ngFor="let sucursal of sucursales">
+                              <td>{{ sucursal.sucursal }}</td>
+                              <td>{{ sucursal.nombre }}</td>
+                              <td>{{ sucursal.alias }}</td>
+                              <td>
+                                <button
+                                  type="button"
+                                  mat-raised-button
+                                  class="btn btn-grey"
+                                  (click)="openDialog(sucursal)"
+                                >
+                                  <i class="material-icons">edit</i> Editar
+                                  Alias
+                                </button>
+                              </td>
+                            </tr>
+                          </ng-container>
+                          <tr *ngIf="loadingSucursales$.value">
+                            <td colspan="4">Loading...</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <mat-paginator
+                      #paginator
+                      [pageSize]="pageSize"
+                      [pageSizeOptions]="pageSizeOptions"
+                      [showFirstLastButtons]="true"
+                      [length]="totalSize"
+                      [pageIndex]="currentPage"
+                      (page)="handlePage($event)"
+                    >
+                    </mat-paginator>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

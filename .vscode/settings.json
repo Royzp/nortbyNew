@@ -1,0 +1,8 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/56d2f70d-50e3-44f1-9d32-786ba02455ce/resourceGroups/testingappservicejlr_group/providers/Microsoft.Web/sites/testingappservicejlr",
+    "appService.deploySubpath": "dist",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
+}

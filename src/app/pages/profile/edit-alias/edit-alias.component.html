@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Editar alias sucursal: {{data.sucursal}} </h2>
+<div mat-dialog-content>
+  <p>Ingresar alias de sucursal</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Alias</mat-label>
+    <input matInput [(ngModel)]="data.alias">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button class="btn btn-grey" [mat-dialog-close]="data.alias" cdkFocusInitial>Aceptar</button>
+</div>

@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>Usuario</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Usuario</mat-label>
+    <input matInput [(ngModel)]="user.userName" [disabled]="!data.isNew">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Login</mat-label>
+    <input matInput [(ngModel)]="user.userLogin" [disabled]="!data.isNew">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Cuenta</mat-label>
+    <input matInput [(ngModel)]="user.accountNumber" [disabled]="!data.isNew">
+  </mat-form-field>
+ 
+  <mat-form-field appearance="fill">
+    <mat-label>Grabar</mat-label>
+    <mat-select [(ngModel)]="user.grabar">
+      <mat-option
+        *ngFor="let option of optionsGrabar"
+        [value]="option.value"
+      >
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Rol</mat-label>
+    <mat-select [(ngModel)]="user.grabar" [disabled]="!data.isNew">
+      <mat-option
+        *ngFor="let option of optionsGrabar"
+        [value]="option.value"
+      >
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Rol</mat-label>
+    <mat-select [(ngModel)]="user.rolAssigned" [disabled]="!data.isNew">
+      <mat-option
+        *ngFor="let option of optionsRoles"
+        [value]="option.value"
+      >
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Estado</mat-label>
+    <mat-select [(ngModel)]="user.userStatus">
+      <mat-option
+        *ngFor="let option of optionsStatus"
+        [value]="option.value"
+      >
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button class="btn btn-grey" (click)="onSaveClick()" cdkFocusInitial>Grabar</button>
+</div>

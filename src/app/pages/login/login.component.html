@@ -1,0 +1,69 @@
+<ngx-spinner
+  bdColor="rgba(255, 255, 255, 0.8)"
+  size="medium"
+  color="#000000"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+  ><p style="color: red">Loading...</p></ngx-spinner
+>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div class="card card-chart">
+                  <div class="card-header card-header-grey">
+                    <h5 class="card-title">ACCEDER</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <mat-form-field class="example-full-width">
+                          <input
+                            matInput
+                            placeholder="Ingrese el nombre de su usuario"
+                            type="text"
+                            [formControl]="user"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <mat-form-field class="example-full-width">
+                          <input
+                            matInput
+                            placeholder="Ingrese su password"
+                            type="password"
+                            [formControl]="password"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="button">
+                          <button
+                            mat-raised-button
+                            type="submit"
+                            class="btn btn-grey pull-right"
+                            (click)="onClickLogin()"
+                          >
+                            Acceder
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<ngx-spinner
+  bdColor="rgba(255, 255, 255, 0.8)"
+  size="medium"
+  color="#000000"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+  ><p style="color: red">{{ message }}...</p></ngx-spinner
+>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card card-chart">
+          <div class="card-header card-header-grey">
+            <h5 class="card-title">USUARIOS</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <button
+                  type="button"
+                  mat-raised-button
+                  class="btn btn-grey"
+                  (click)="openDialogAgregar()"
+                >
+                  <i class="material-icons">edit</i> Agregar Usuario
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-primary">
+                      <th>Nombre</th>
+                      <th>Login</th>
+                      <th>Cuenta</th>
+                      <th>Grabar</th>
+                      <th>Rol</th>
+             
+                      <th>Estado</th>
+                      <th>Acción</th>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngIf="!loadingUsuarios$.value">
+                        <tr *ngFor="let user of usuarios">
+                          <td>{{ user.userName }}</td>
+                          <td>{{ user.userLogin }}</td>
+                          <td>{{ user.accountNumber }}</td>
+                          <td>{{ user.grabar }}</td>
+                          <td>{{ user.rolAssigned }}</td>
+                          <td>{{ user.userStatus }}</td>
+                          <td>
+                            <button
+                              type="button"
+                              mat-raised-button
+                              class="btn btn-grey"
+                              (click)="openDialog(user)"
+                            >
+                              <i class="material-icons">edit</i> Editar
+                            </button>
+                            <button
+                              type="button"
+                              mat-button
+                              (click)="openDialogEliminar(user)"
+                            >
+                              <i class="material-icons">delete</i> Eliminar
+                            </button>
+                          </td>
+                        </tr>
+                      </ng-container>
+                      <tr *ngIf="loadingUsuarios$.value">
+                        <td colspan="4">Loading...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <mat-paginator
+                  #paginator
+                  [pageSize]="pageSize"
+                  [pageSizeOptions]="pageSizeOptions"
+                  [showFirstLastButtons]="true"
+                  [length]="totalSize"
+                  [pageIndex]="currentPage"
+                  (page)="handlePage($event)"
+                >
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
