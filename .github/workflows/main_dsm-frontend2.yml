@@ -17,7 +17,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '14'  # Asegúrate de que sea una versión compatible con Angular
+          node-version: '18.x'  # Asegúrate de que sea una versión compatible con Angular
 
       - name: Install Angular CLI
         run: npm install -g @angular/cli
