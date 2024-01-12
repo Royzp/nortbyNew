@@ -26,7 +26,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
+        
+      - name: Install pm2
+        run: npm install -g pm2
+        
       - name: Build Angular app
         run: ng build --prod
 
@@ -66,3 +69,6 @@ jobs:
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_199998A8919349599C81E6B40E513B56 }}
+          
+      - name: Start Angular app with pm2
+        run: pm2 start npm --name "myApp" -- run start:prod
