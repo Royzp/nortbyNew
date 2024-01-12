@@ -53,4 +53,4 @@ jobs:
           app-name: 'dsm-frontend2'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_199998A8919349599C81E6B40E513B56 }}
-          package: ${{ github.workspace }}/dist  # Ruta correcta para la carpeta de construcción de Angular
+          package: ./dist  # Ruta correcta para la carpeta de construcción de Angular
